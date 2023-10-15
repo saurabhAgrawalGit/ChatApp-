@@ -79,8 +79,8 @@ public class specificchat extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         linearLayoutManager.setStackFromEnd(true);
         mmessagerecyclerview.setLayoutManager(linearLayoutManager);
-       // messagesAdapter=new MessagesAdapter(specificchat.this,messagesArrayList);
-       // mmessagerecyclerview.setAdapter(messagesAdapter);
+        messagesAdapter=new MessagesAdapter(specificchat.this,messagesArrayList);
+        mmessagerecyclerview.setAdapter(messagesAdapter);
 
 
 
@@ -113,7 +113,7 @@ public class specificchat extends AppCompatActivity {
         recieverroom=mrecieveruid+msenderuid;
 
         DatabaseReference databaseReference=firebaseDatabase.getReference().child("chats").child(senderroom).child("messages");
-      //  messagesAdapter=new MessagesAdapter(specificchat.this,messagesArrayList);
+       messagesAdapter=new MessagesAdapter(specificchat.this,messagesArrayList);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -123,7 +123,7 @@ public class specificchat extends AppCompatActivity {
                     Messages messages=snapshot1.getValue(Messages.class);
                     messagesArrayList.add(messages);
                 }
-                //messagesAdapter.notifyDataSetChanged();
+                messagesAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -153,7 +153,7 @@ public class specificchat extends AppCompatActivity {
         msendmessagebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+
                 enteredmessage=mgetmessage.getText().toString();
                 if(enteredmessage.isEmpty())
                 {

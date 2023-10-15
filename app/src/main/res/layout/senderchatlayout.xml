@@ -2,19 +2,21 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="right"
+    android:layout_margin="2dp"
     android:layout_marginLeft="60dp"
 
 
-    android:background="#B7FF98">
+ >
 
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#B7FF98"
 
         app:layout_constraintEnd_toEndOf="parent"
 
@@ -24,14 +26,15 @@
             android:id="@+id/msg_sender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingEnd="44dp"
-            android:text="sender maessage send heree this new  message of check new thing"
+            android:paddingEnd="4dp"
+            android:padding="7dp"
+            android:text="sender ma"
             android:textColor="@color/black"
             android:textSize="20dp"
+            android:paddingLeft="8dp"
+            app:layout_constraintEnd_toStartOf="@id/msgtime_sender"
 
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+           >
 
         </TextView>
 
@@ -40,6 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="10:20"
+            android:paddingBottom="3dp"
             android:textColor="#6A6565"
             android:textSize="15dp"
             android:layout_marginEnd="5dp"
