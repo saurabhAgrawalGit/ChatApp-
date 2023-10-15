@@ -1,15 +1,15 @@
 package com.example.chatapp;
 
-public class messages {
+public class Messages {
     String message;
     String sendId;
     long timestamp;
     String currenttime;
 
-    public messages() {
+    public Messages() {
     }
 
-    public messages(String message, String sendId, long timestamp, String currenttime) {
+    public Messages(String message, String sendId, long timestamp, String currenttime) {
         this.message = message;
         this.sendId = sendId;
         this.timestamp = timestamp;
