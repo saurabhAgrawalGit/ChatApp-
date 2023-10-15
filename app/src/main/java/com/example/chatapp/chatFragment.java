@@ -41,7 +41,7 @@ public class chatFragment extends Fragment {
         firebaseAuth =FirebaseAuth.getInstance();
         firebaseFirestore =FirebaseFirestore.getInstance();
         recyclerView= view.findViewById(R.id.recyclerView);
-        Query query= firebaseFirestore.collection("Users");
+        Query query= firebaseFirestore.collection("Users").whereNotEqualTo("uid",firebaseAuth.getUid());
 
         FirestoreRecyclerOptions<FirebaseModel> allUser =new FirestoreRecyclerOptions.Builder<FirebaseModel>().setQuery(query,FirebaseModel.class).build();
         chatAdapter=new FirestoreRecyclerAdapter<FirebaseModel, NoteViewHolder>(allUser) {

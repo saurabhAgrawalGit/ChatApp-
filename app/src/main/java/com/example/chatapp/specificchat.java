@@ -207,7 +207,7 @@ public class specificchat extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        //messagesAdapter.notifyDataSetChanged();
+        messagesAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -216,7 +216,7 @@ public class specificchat extends AppCompatActivity {
 
         if(messagesAdapter!=null)
         {
-         //   messagesAdapter.notifyDataSetChanged();
+           messagesAdapter.notifyDataSetChanged();
         }
     }
 
