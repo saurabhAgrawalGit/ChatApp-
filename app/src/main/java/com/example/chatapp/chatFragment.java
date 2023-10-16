@@ -83,9 +83,10 @@ public class chatFragment extends Fragment {
         };
 
         recyclerView.setHasFixedSize(true);
-        linearLayoutManager =new LinearLayoutManager(getContext());
-        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
+        linearLayoutManager =new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+
         recyclerView.setLayoutManager(linearLayoutManager);
+
         recyclerView.setAdapter(chatAdapter  );
         return view;
 
@@ -110,12 +111,16 @@ public class chatFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
         chatAdapter.startListening();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        chatAdapter.stopListening();
+        if(chatAdapter!=null)
+        {
+            chatAdapter.stopListening();
+        }
     }
 }

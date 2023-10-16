@@ -78,8 +78,9 @@ public class specificchat extends AppCompatActivity {
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         linearLayoutManager.setStackFromEnd(true);
-        mmessagerecyclerview.setLayoutManager(linearLayoutManager);
+
         messagesAdapter=new MessagesAdapter(specificchat.this,messagesArrayList);
+        mmessagerecyclerview.setLayoutManager(linearLayoutManager);
         mmessagerecyclerview.setAdapter(messagesAdapter);
 
 
@@ -181,13 +182,14 @@ public class specificchat extends AppCompatActivity {
                                             .setValue(messages).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
-
+                                                    messagesAdapter.notifyDataSetChanged();
                                                 }
                                             });
                                 }
                             });
 
                     mgetmessage.setText(null);
+
 
 
 
@@ -204,10 +206,13 @@ public class specificchat extends AppCompatActivity {
 
 
     }
+
     @Override
     public void onStart() {
         super.onStart();
-        messagesAdapter.notifyDataSetChanged();
+
+            messagesAdapter.notifyDataSetChanged();
+
     }
 
     @Override
