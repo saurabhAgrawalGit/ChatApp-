@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -56,7 +57,7 @@ public class specificchat extends AppCompatActivity {
     SimpleDateFormat simpleDateFormat;
 
     MessagesAdapter messagesAdapter;
-    ArrayList<Messages> messagesArrayList;
+    ArrayList<Messages> messagesArrayList=new ArrayList<Messages>();;
 
 
 
@@ -73,14 +74,14 @@ public class specificchat extends AppCompatActivity {
         mimageviewofspecificuser=findViewById(R.id.toolchatdp);
 
 
-        messagesArrayList=new ArrayList<>();
+
         mmessagerecyclerview=findViewById(R.id.rec_chat);
 
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
-        linearLayoutManager.setStackFromEnd(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        ((LinearLayoutManager) layoutManager).setStackFromEnd(true);
 
         messagesAdapter=new MessagesAdapter(specificchat.this,messagesArrayList);
-        mmessagerecyclerview.setLayoutManager(linearLayoutManager);
+        mmessagerecyclerview.setLayoutManager(layoutManager);
         mmessagerecyclerview.setAdapter(messagesAdapter);
 
 
@@ -93,6 +94,7 @@ public class specificchat extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(),"Toolbar is Clicked",Toast.LENGTH_SHORT).show();
+                finish();
 
 
             }
@@ -109,35 +111,44 @@ public class specificchat extends AppCompatActivity {
         mrecievername=getIntent().getStringExtra("name");
 
 
-
+        messagesAdapter.notifyDataSetChanged();
         senderroom=msenderuid+mrecieveruid;
         recieverroom=mrecieveruid+msenderuid;
 
         DatabaseReference databaseReference=firebaseDatabase.getReference().child("chats").child(senderroom).child("messages");
-       messagesAdapter=new MessagesAdapter(specificchat.this,messagesArrayList);
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 messagesArrayList.clear();
+
+                Toast.makeText(specificchat.this, "call refe", Toast.LENGTH_SHORT).show();
                 for(DataSnapshot snapshot1:snapshot.getChildren())
                 {
                     Messages messages=snapshot1.getValue(Messages.class);
                     messagesArrayList.add(messages);
+
+
                 }
+
                 messagesAdapter.notifyDataSetChanged();
+                mmessagerecyclerview.smoothScrollToPosition(messagesAdapter.getItemCount());
+
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+
         });
 
 
 
 
 
-
+        messagesAdapter.notifyDataSetChanged();
 
         mnameofspecificuser.setText(mrecievername);
         String uri=intent.getStringExtra("imageuri");
@@ -219,11 +230,12 @@ public class specificchat extends AppCompatActivity {
     public void onStop() {
         super.onStop();
 
-        if(messagesAdapter!=null)
-        {
+
+
            messagesAdapter.notifyDataSetChanged();
-        }
+
     }
+
 
 
 

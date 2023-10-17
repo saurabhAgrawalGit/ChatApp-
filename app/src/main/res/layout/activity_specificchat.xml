@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/back"
+    android:background="#D0D3D0"
     tools:context=".specificchat">
 
 
@@ -50,32 +50,33 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rec_chat"
         android:layout_width="match_parent"
-        android:layout_height="333dp"
+        android:layout_height="0dp"
         android:layout_margin="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/getmessage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_chat"></androidx.recyclerview.widget.RecyclerView>
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_chat">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <EditText
 
 
         android:id="@+id/getmessage"
         android:layout_width="0dp"
-        android:maxHeight="180dp"
-
         android:layout_height="wrap_content"
+
         android:layout_marginLeft="15dp"
         android:layout_marginEnd="5sp"
         android:gravity="bottom"
         android:hint="message"
+
         android:paddingLeft="15dp"
         android:textColor="@color/black"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/send_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_chat"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintStart_toStartOf="parent">
 
     </EditText>
 

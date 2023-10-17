@@ -1,6 +1,7 @@
 package com.example.chatapp;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,16 +13,31 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MessagesAdapter extends RecyclerView.Adapter {
 
     Context context;
     ArrayList<Messages> messagesArrayList;
+    class RecieverViewHolder extends RecyclerView.ViewHolder
+    {
+
+        TextView textViewmessaage;
+        TextView timeofmessage;
+
+
+        public RecieverViewHolder(@NonNull View itemView) {
+            super(itemView);
+            textViewmessaage=itemView.findViewById(R.id.msg_reciever);
+            timeofmessage=itemView.findViewById(R.id.msgtime_reciever);
+        }
+    }
 
     int ITEM_SEND=1;
     int ITEM_RECIEVE=2;
 
     public MessagesAdapter(Context context, ArrayList<Messages> messagesArrayList) {
+
         this.context = context;
         this.messagesArrayList = messagesArrayList;
     }
@@ -47,31 +63,23 @@ public class MessagesAdapter extends RecyclerView.Adapter {
         Messages messages=messagesArrayList.get(position);
         if(holder.getClass()==SenderViewHolder.class)
         {
+            Log.e("check 1 ",messages.getMessage());
             SenderViewHolder viewHolder=(SenderViewHolder)holder;
             viewHolder.textViewmessaage.setText(messages.getMessage());
             viewHolder.timeofmessage.setText(messages.getCurrenttime());
         }
         else
-        {
+        { Log.e("check 2",messages.getMessage());
             RecieverViewHolder viewHolder=(RecieverViewHolder)holder;
             viewHolder.textViewmessaage.setText(messages.getMessage());
             viewHolder.timeofmessage.setText(messages.getCurrenttime());
         }
-
-
-
-
-
-
-
-
     }
-
 
     @Override
     public int getItemViewType(int position) {
         Messages messages=messagesArrayList.get(position);
-        if(FirebaseAuth.getInstance().getCurrentUser().getUid().equals(messages.getSendId()))
+        if(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid().equals(messages.getSendId()))
 
         {
             return  ITEM_SEND;
@@ -108,19 +116,7 @@ public class MessagesAdapter extends RecyclerView.Adapter {
         }
     }
 
-    class RecieverViewHolder extends RecyclerView.ViewHolder
-    {
 
-        TextView textViewmessaage;
-        TextView timeofmessage;
-
-
-        public RecieverViewHolder(@NonNull View itemView) {
-            super(itemView);
-            textViewmessaage=itemView.findViewById(R.id.msg_reciever);
-            timeofmessage=itemView.findViewById(R.id.msgtime_reciever);
-        }
-    }
 
 
 

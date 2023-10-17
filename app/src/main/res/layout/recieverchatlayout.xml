@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginEnd="50dp"
-
+    android:layout_marginTop="3dp"
 
 
 
@@ -15,26 +15,24 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#EDEBEB"
+        android:background="#FFFFFF"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        >
 
         <TextView
             android:id="@+id/msg_reciever"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-           android:paddingStart="40dp"
-            android:gravity="start"
-            android:text="sesdd44444eeeeeeeeeeeeeeeeeeeeeee44444444444ddddddxxxxxxxxxxxxxxdddd"
+            android:paddingLeft="7dp"
+            android:paddingTop="7dp"
+            android:paddingRight="40dp"
+            android:paddingBottom="7dp"
+            android:text="sesdd44444eeeeeeeeeeexxxxxxxxxxxxxdddd"
             android:textColor="@color/black"
             android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/msgtime_reciever"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintStart_toStartOf="parent">
 
         </TextView>
 
@@ -42,13 +40,13 @@
             android:id="@+id/msgtime_reciever"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="-40dp"
 
-            android:paddingEnd="45dp"
             android:text="10:20"
             android:textColor="#6A6565"
             android:textSize="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:padding="7dp"
             app:layout_constraintStart_toEndOf="@+id/msg_reciever">
 
 

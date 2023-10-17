@@ -106,12 +106,13 @@ public class chatFragment extends Fragment {
             userStatus_chat = itemView.findViewById(R.id.chatstatus);
             imageView=itemView.findViewById(R.id.chat_dp);
         }
+
     }
 
     @Override
     public void onStart() {
         super.onStart();
-
+       chatAdapter.notifyDataSetChanged();
         chatAdapter.startListening();
     }
 
@@ -120,6 +121,7 @@ public class chatFragment extends Fragment {
         super.onStop();
         if(chatAdapter!=null)
         {
+            chatAdapter.notifyDataSetChanged();
             chatAdapter.stopListening();
         }
     }

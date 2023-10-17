@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         documentReference.update("status","Online").addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
+
                 Toast.makeText(getApplicationContext(),"Now User is Online",Toast.LENGTH_SHORT).show();
             }
         });
